@@ -6,7 +6,7 @@
 
 <div class="minions-page" @ref="pageElement">
     <!-- Animated Minion Character -->
-    <div class="minion-character" id="minion" style="top: @minionTop; left: @minionLeft;">
+    <div class="minion-character" id="minion">
         <div class="minion-body">
             <div class="minion-goggles">
                 <div class="goggle left">
@@ -100,19 +100,18 @@
 
 @code {
     private ElementReference pageElement;
-    private string minionTop = "100px";
-    private string minionLeft = "50px";
+    private IJSObjectReference? cleanupFunction;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("initMinionAnimation");
+            cleanupFunction = await JS.InvokeAsync<IJSObjectReference>("initMinionAnimation");
         }
     }
 
     public void Dispose()
     {
-        // Cleanup if needed
+        cleanupFunction?.DisposeAsync();
     }
 }
