@@ -1,0 +1,464 @@
+.minions-page {
+    min-height: 400vh;
+    background: linear-gradient(180deg, #87CEEB 0%, #4A90E2 50%, #2E5C8A 100%);
+    position: relative;
+    overflow-x: hidden;
+    perspective: 1000px;
+}
+
+/* Minion Character */
+.minion-character {
+    position: fixed;
+    width: 80px;
+    height: 120px;
+    z-index: 100;
+    transition: top 0.3s ease-out, left 0.5s ease-out;
+    will-change: top, left;
+}
+
+.minion-body {
+    position: relative;
+    width: 80px;
+    height: 120px;
+    background: linear-gradient(135deg, #FFE135 0%, #FFC300 100%);
+    border-radius: 40px 40px 20px 20px;
+    border: 3px solid #2C3E50;
+    animation: bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.minion-goggles {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.goggle {
+    width: 30px;
+    height: 30px;
+    background: #C0C0C0;
+    border: 3px solid #2C3E50;
+    border-radius: 50%;
+    position: relative;
+}
+
+.goggle .eye {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.goggle .eye::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #2C3E50;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.minion-mouth {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    border: 2px solid #2C3E50;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+}
+
+.minion-overalls {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 40px;
+    background: #4A90E2;
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #2C3E50;
+}
+
+.minion-overalls::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #C0C0C0;
+    border-radius: 50%;
+    border: 2px solid #2C3E50;
+}
+
+.minion-arms {
+    position: relative;
+}
+
+.arm {
+    position: absolute;
+    width: 15px;
+    height: 50px;
+    background: #FFE135;
+    border: 2px solid #2C3E50;
+    border-radius: 10px;
+    top: 50px;
+}
+
+.arm.left {
+    left: -10px;
+    transform: rotate(-20deg);
+    animation: armSwing 0.5s ease-in-out infinite;
+}
+
+.arm.right {
+    right: -10px;
+    transform: rotate(20deg);
+    animation: armSwing 0.5s ease-in-out infinite reverse;
+}
+
+@keyframes armSwing {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-35deg); }
+}
+
+.minion-legs {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.leg {
+    width: 20px;
+    height: 30px;
+    background: #4A90E2;
+    border: 2px solid #2C3E50;
+    border-radius: 5px 5px 10px 10px;
+    animation: legWalk 0.5s ease-in-out infinite;
+}
+
+.leg.left {
+    animation-delay: 0.25s;
+}
+
+@keyframes legWalk {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(5deg); }
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    transform: translateZ(100px);
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.minion-text {
+    color: #FFE135;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.x-symbol {
+    font-size: 3rem;
+    color: white;
+}
+
+.avanzamos-text {
+    color: white;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Content Sections */
+.content-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 3rem 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.content-section.offset-right {
+    justify-content: flex-end;
+}
+
+.content-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 3px solid #2C3E50;
+    transition: transform 0.3s ease;
+}
+
+.content-card.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateZ(50px); }
+    50% { transform: translateY(-20px) translateZ(50px); }
+}
+
+.content-card h2 {
+    color: #2C3E50;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.content-card p {
+    color: #34495E;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Pool Section */
+.pool-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.pool-container {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.pool-water {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(180deg, #4FC3F7 0%, #0288D1 100%);
+    border-radius: 30px;
+    border: 5px solid #01579B;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.water-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%);
+    animation: waterShimmer 2s ease-in-out infinite;
+}
+
+@keyframes waterShimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.floatie {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    animation: floatInPool 3s ease-in-out infinite;
+}
+
+@keyframes floatInPool {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-2deg);
+    }
+    50% {
+        transform: translate(-50%, -55%) rotate(2deg);
+    }
+}
+
+.duck-body {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    background: #FFD700;
+    border-radius: 50% 50% 40% 40%;
+    border: 3px solid #2C3E50;
+    margin: 0 auto;
+}
+
+.duck-head {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #FFD700;
+    border-radius: 50%;
+    border: 3px solid #2C3E50;
+    top: -30px;
+    left: 30px;
+}
+
+.duck-head::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background: #FF6B35;
+    border-radius: 0 0 10px 10px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #2C3E50;
+}
+
+.sunglasses {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    width: 40px;
+    height: 15px;
+    background: #2C3E50;
+    border-radius: 10px;
+}
+
+.sunglasses::before,
+.sunglasses::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #2C3E50;
+    border-radius: 50%;
+    top: 0;
+}
+
+.sunglasses::before {
+    left: -5px;
+}
+
+.sunglasses::after {
+    right: -5px;
+}
+
+.drink-cup {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    font-size: 2rem;
+    animation: drinkBob 2s ease-in-out infinite;
+}
+
+@keyframes drinkBob {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.pool-text {
+    margin-top: 2rem;
+    color: white;
+}
+
+.pool-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pool-text p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .x-symbol {
+        font-size: 2rem;
+    }
+
+    .content-card {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .content-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .minion-character {
+        width: 60px;
+        height: 90px;
+    }
+
+    .minion-body {
+        width: 60px;
+        height: 90px;
+    }
+
+    .pool-water {
+        height: 300px;
+    }
+
+    .floatie {
+        width: 100px;
+        height: 100px;
+    }
+
+    .duck-body {
+        width: 80px;
+        height: 60px;
+    }
+}
