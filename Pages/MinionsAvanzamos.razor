@@ -1,0 +1,96 @@
+@page "/minions-avanzamos"
+@implements IDisposable
+@inject IJSRuntime JS
+
+<PageTitle>Minions × Avanzamos</PageTitle>
+
+<div class="minions-page" @ref="pageElement">
+    <!-- Lottie Minion Container -->
+    <div class="minion-container" id="minion-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" data-depth="0.2">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="minion-text">Minions</span>
+                <span class="x-symbol">×</span>
+                <span class="avanzamos-text">Avanzamos</span>
+            </h1>
+            <p class="hero-subtitle">When chaos meets innovation</p>
+        </div>
+    </section>
+
+    <!-- Content Sections with 3D Parallax -->
+    <section class="content-section" data-depth="0.3">
+        <div class="content-card floating" style="transform: translateZ(50px);">
+            <h2>🍌 Innovation at Scale</h2>
+            <p>At Avanzamos, we believe in pushing boundaries. But what happens when minions take over? Pure, unbridled creativity meets corporate excellence!</p>
+        </div>
+    </section>
+
+    <section class="content-section offset-right" data-depth="0.4">
+        <div class="content-card floating" style="transform: translateZ(100px);">
+            <h2>🔧 Engineering Excellence</h2>
+            <p>Our engineering team (now led by Kevin and Stuart) delivers cutting-edge solutions. The minions' unique perspective has revolutionized our approach to problem-solving.</p>
+        </div>
+    </section>
+
+    <section class="content-section" data-depth="0.35">
+        <div class="content-card floating" style="transform: translateZ(75px);">
+            <h2>🚀 Future Vision</h2>
+            <p>With the minions at the helm, we're reimagining what's possible. From banana-powered servers to giggle-driven algorithms, innovation knows no bounds!</p>
+        </div>
+    </section>
+
+    <section class="content-section offset-right" data-depth="0.45">
+        <div class="content-card floating" style="transform: translateZ(120px);">
+            <h2>🎯 Customer Success</h2>
+            <p>Our clients love the minion makeover! Response times are up 300%, mostly because everyone's too busy laughing. But hey, happiness is the real metric!</p>
+        </div>
+    </section>
+
+    <section class="content-section" data-depth="0.3">
+        <div class="content-card floating" style="transform: translateZ(90px);">
+            <h2>💡 Creative Solutions</h2>
+            <p>The minions have introduced unconventional methodologies: the "Banana Sprint", "Giggle-Driven Development", and "Chaos Engineering" (literally).</p>
+        </div>
+    </section>
+
+    <!-- Pool Section -->
+    <section class="pool-section" id="pool-section">
+        <div class="pool-container">
+            <div class="pool-water">
+                <div class="water-surface"></div>
+                <div class="floatie" id="floatie">
+                    <div class="duck-body">
+                        <div class="duck-head"></div>
+                        <div class="sunglasses"></div>
+                    </div>
+                    <div class="drink-cup">🍹</div>
+                </div>
+            </div>
+            <div class="pool-text">
+                <h2>Mission Accomplished!</h2>
+                <p>Time to relax and enjoy some well-deserved banana smoothies 🍌</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+@code {
+    private ElementReference pageElement;
+    private IJSObjectReference? cleanupFunction;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            cleanupFunction = await JS.InvokeAsync<IJSObjectReference>("initMinionAnimation");
+        }
+    }
+
+    public void Dispose()
+    {
+        cleanupFunction?.DisposeAsync();
+    }
+}
