@@ -6,167 +6,29 @@
     perspective: 1000px;
 }
 
-/* Minion Character */
-.minion-character {
+/* Minion Container for Lottie/SVG Animation */
+.minion-container {
     position: fixed;
-    width: 80px;
-    height: 120px;
+    width: 120px;
+    height: 180px;
     top: 100px;
     left: 50px;
     z-index: 100;
-    transition: top 0.3s ease-out, left 0.5s ease-out;
-    will-change: top, left;
+    transition: top 0.1s ease-out, left 0.1s ease-out, transform 0.2s ease-out;
+    will-change: top, left, transform;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
 }
 
-.minion-body {
-    position: relative;
-    width: 80px;
-    height: 120px;
-    background: linear-gradient(135deg, #FFE135 0%, #FFC300 100%);
-    border-radius: 40px 40px 20px 20px;
-    border: 3px solid #2C3E50;
-    animation: bounce 0.5s ease-in-out infinite;
+/* Walking Path Visualization */
+.walking-path {
+    opacity: 0.15;
+    mix-blend-mode: overlay;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-.minion-goggles {
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-}
-
-.goggle {
-    width: 30px;
-    height: 30px;
-    background: #C0C0C0;
-    border: 3px solid #2C3E50;
-    border-radius: 50%;
-    position: relative;
-}
-
-.goggle .eye {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: white;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.goggle .eye::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #2C3E50;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.minion-mouth {
-    position: absolute;
-    bottom: 45px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 15px;
-    border: 2px solid #2C3E50;
-    border-top: none;
-    border-radius: 0 0 20px 20px;
-}
-
-.minion-overalls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 40px;
-    background: #4A90E2;
-    border-radius: 10px 10px 0 0;
-    border: 2px solid #2C3E50;
-}
-
-.minion-overalls::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: #C0C0C0;
-    border-radius: 50%;
-    border: 2px solid #2C3E50;
-}
-
-.minion-arms {
-    position: relative;
-}
-
-.arm {
-    position: absolute;
-    width: 15px;
-    height: 50px;
-    background: #FFE135;
-    border: 2px solid #2C3E50;
-    border-radius: 10px;
-    top: 50px;
-}
-
-.arm.left {
-    left: -10px;
-    transform: rotate(-20deg);
-    animation: armSwing 0.5s ease-in-out infinite;
-}
-
-.arm.right {
-    right: -10px;
-    transform: rotate(20deg);
-    animation: armSwing 0.5s ease-in-out infinite reverse;
-}
-
-@keyframes armSwing {
-    0%, 100% { transform: rotate(-20deg); }
-    50% { transform: rotate(-35deg); }
-}
-
-.minion-legs {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.leg {
-    width: 20px;
-    height: 30px;
-    background: #4A90E2;
-    border: 2px solid #2C3E50;
-    border-radius: 5px 5px 10px 10px;
-    animation: legWalk 0.5s ease-in-out infinite;
-}
-
-.leg.left {
-    animation-delay: 0.25s;
-}
-
-@keyframes legWalk {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-3px) rotate(5deg); }
+/* Fallback SVG Minion Styles */
+.minion-svg {
+    width: 100%;
+    height: 100%;
 }
 
 /* Hero Section */
@@ -419,6 +281,16 @@
     opacity: 0.9;
 }
 
+/* Splash Effect */
+.splash-effect {
+    animation: fadeOut 1s ease-out;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero-title {
@@ -440,14 +312,9 @@
         font-size: 1.5rem;
     }
 
-    .minion-character {
-        width: 60px;
-        height: 90px;
-    }
-
-    .minion-body {
-        width: 60px;
-        height: 90px;
+    .minion-container {
+        width: 90px;
+        height: 135px;
     }
 
     .pool-water {
